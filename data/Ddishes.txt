@@ -1,0 +1,35 @@
+**Dessert Menu**
+
+1. **Classic New York Cheesecake**
+   - Rich and creamy cheesecake on a graham cracker crust, served plain or with a choice of strawberry or blueberry topping.
+   - Price: $7.99
+
+2. **Chocolate Lava Cake**
+   - Warm chocolate cake with a gooey molten center, served with a scoop of vanilla ice cream and drizzled with chocolate sauce.
+   - Price: $8.99
+
+3. **Tiramisu**
+   - Layers of espresso-soaked ladyfingers and mascarpone cheese, dusted with cocoa powder and served with a dollop of whipped cream.
+   - Price: $6.99
+
+4. **Crème Brûlée**
+   - Creamy vanilla custard topped with a caramelized sugar crust, served with fresh berries on the side.
+   - Price: $7.99
+
+5. **Apple Pie à la Mode**
+   - Warm apple pie with a flaky crust, served with a scoop of vanilla ice cream and a drizzle of caramel sauce.
+   - Price: $7.99
+
+6. **Key Lime Pie**
+   - Tangy key lime filling in a buttery graham cracker crust, topped with whipped cream and lime zest.
+   - Price: $6.99
+
+7. **Chocolate Truffle Tart**
+   - Decadent chocolate truffle filling in a crisp pastry shell, garnished with chocolate shavings and a raspberry coulis.
+   - Price: $8.99
+
+8. **Mixed Berry Pavlova**
+   - Light and airy meringue topped with whipped cream and a medley of fresh berries, drizzled with berry coulis.
+   - Price: $7.99
+
+**Note:** Prices are subject to change without notice.

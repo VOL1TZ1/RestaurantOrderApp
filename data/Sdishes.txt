@@ -1,0 +1,34 @@
+**Side Dish Menu**
+
+1. **Garlic Parmesan Roasted Potatoes**
+   - Crispy roasted potatoes seasoned with garlic, Parmesan cheese, and fresh herbs.
+   - Price: $4.99
+
+2. **Grilled Asparagus**
+   - Fresh asparagus spears grilled to perfection and lightly seasoned with salt, pepper, and a hint of lemon.
+   - Price: $5.99
+
+3. **Caesar Salad**
+   - Crisp romaine lettuce tossed in a creamy Caesar dressing with Parmesan cheese and garlic croutons.
+   - Price: $6.99
+
+4. **Steamed Broccoli**
+   - Tender broccoli florets steamed to perfection and served with a side of lemon butter sauce.
+   - Price: $4.99
+
+5. **Truffle Parmesan Fries**
+   - Crispy French fries tossed with truffle oil and Parmesan cheese, served with a side of aioli dipping sauce.
+   - Price: $7.99
+
+6. **Caprese Salad**
+   - Sliced tomatoes, fresh mozzarella cheese, and basil leaves drizzled with balsamic glaze and extra virgin olive oil.
+   - Price: $8.99
+
+7. **Wild Rice Pilaf**
+   - A flavorful blend of wild rice, toasted almonds, dried cranberries, and fresh herbs.
+   - Price: $5.99
+
+8. **Sweet Potato Fries**
+   - Crispy sweet potato fries lightly seasoned with sea salt and served with a side of chipotle aioli.
+   - Price: $6.99
+-

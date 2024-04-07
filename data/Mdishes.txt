@@ -1,0 +1,34 @@
+**Main Dish Menu**
+
+1. **Grilled Salmon with Lemon Herb Butter**
+   - Succulent salmon fillet grilled to perfection, topped with a zesty lemon herb butter sauce. Served with a side of roasted vegetables and garlic mashed potatoes.
+   - Price: $18.99
+
+2. **Beef Tenderloin Medallions**
+   - Tender beef tenderloin medallions seasoned with a blend of herbs and spices, seared to a juicy perfection. Accompanied by a red wine reduction sauce, roasted Brussels sprouts, and creamy mashed sweet potatoes.
+   - Price: $22.99
+
+3. **Mushroom Risotto**
+   - Creamy Arborio rice cooked to perfection with a medley of mushrooms, garlic, and Parmesan cheese. Garnished with fresh parsley and drizzled with truffle oil.
+   - Price: $16.99
+
+4. **Chicken Marsala**
+   - Sautéed chicken breasts smothered in a rich Marsala wine sauce with mushrooms, onions, and garlic. Served with a side of roasted asparagus and garlic herb roasted potatoes.
+   - Price: $17.99
+
+5. **Vegetable Stir-Fry**
+   - Fresh mixed vegetables stir-fried to perfection in a savory ginger soy sauce. Served over a bed of steamed jasmine rice and garnished with toasted sesame seeds.
+   - Price: $14.99
+
+6. **Eggplant Parmesan**
+   - Layers of crispy breaded eggplant slices, marinara sauce, and melted mozzarella cheese, baked to golden perfection. Served with a side of spaghetti marinara and garlic bread.
+   - Price: $15.99
+
+7. **Shrimp Scampi Pasta**
+   - Succulent shrimp sautéed with garlic, white wine, and lemon butter sauce, tossed with linguine pasta and sprinkled with freshly grated Parmesan cheese.
+   - Price: $19.99
+
+8. **Vegetarian Pad Thai**
+   - Stir-fried rice noodles with tofu, bean sprouts, bell peppers, and green onions in a tangy tamarind sauce, garnished with crushed peanuts and cilantro.
+   - Price: $16.99
+

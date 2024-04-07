@@ -1,17 +1,17 @@
-public class Item {
+public class Dish {
     //The Class Variables:
     private String name, description;
     private double price;
 
     //Default constructor:
-    public Item() {
+    public Dish() {
         this.name="Dish";
         this.description="A dish";
         this.price=0;
     }
 
-    //Constructor for entering all item's data:
-    public Item(String dName , String dDescription, double dPrice){
+    //Constructor for entering all dish's data:
+    public Dish(String dName , String dDescription, double dPrice){
         this.name=dName;
         this.description=dDescription;
         this.price=dPrice;

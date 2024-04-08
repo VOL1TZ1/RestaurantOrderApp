@@ -91,29 +91,25 @@ public class Menu {
     }
 
     //get all dish name:
-    public void getDishName(){
+    public void getDishInfo(int i){
+        ArrayList<Dish> dishes = this.menu;
+
+            Dish dish = dishes.get(i-1);
+            String name = dish.getName();
+            String description = dish.getDescription();
+            double price = dish.getPrice();
+            System.out.println(STR."\{name}: \{price}%n\{description}" );
+
+    }
+    public void getDishMenu(){
         ArrayList<Dish> dishes = this.menu;
         for (int i = 0; i < dishes.size(); i++) {
             Dish dish = dishes.get(i);
             String name = dish.getName();
-            System.out.printf("%d.%s%n", i + 1, name);
-        }
-    }
-    public void getDishDescription(){
-        ArrayList<Dish> dishes = this.menu;
-        for (Dish dish : dishes) {
-            String description = dish.getDescription();
-            System.out.println(description);
+            double price = dish.getPrice();
+            System.out.printf(STR."\{i+1}.\{name}: \{price}%n");
         }
      }
-    public void getDishPrice(){
-        ArrayList<Dish> dishes = this.menu;
-        for (Dish dish : dishes) {
-            double price = dish.getPrice();
-            System.out.println(price);
-        }
-    }
-
     //constructor to make 3 types of a menu:
     Menu(int i){
         switch (i) {

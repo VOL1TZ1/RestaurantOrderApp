@@ -45,7 +45,6 @@ public class Main {
             {
                 Dish userDish = userMenu.menu.get(dishNum);
                 userOrder.addCart(userDish);
-                
                 break;
             }
             case 'n':

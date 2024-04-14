@@ -16,6 +16,6 @@ public class Order {
         for (int i = 0; i < cart.size(); i++){
             System.out.println(STR."\{i + 1}.\{cart.get(i).getName()}: \{cart.get(i).getPrice()}");
         }
-        System.out.printf(STR."The total: \{total}");
+        System.out.println(STR."The total: \{total}");
     }
 }

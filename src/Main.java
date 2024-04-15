@@ -10,6 +10,7 @@ public class Main {
         System.out.print("\t\t\t\t\t\t\t\t\t\t");
         System.out.println("!!!! Hello and welcome to Sprints Ordering App in Java !!!!");
 
+        //menu loop:
         while (infLoop) {
             //Choosing the dish:
             System.out.print("choose the menu: ");
@@ -31,13 +32,11 @@ public class Main {
                 dishNum = sMenu.nextInt();
             }
 
-//        //making a dish object to store the user's choice and adding it to the cart:
-//        Dish userDish = userMenu.menu.get(dishNum);
-//        userOrder.addCart(userDish);
+
 
             //show the dish info
             userMenu.getDishInfo(dishNum);
-            System.out.printf("do you like to add the dish to the cart? (Y/N): ");
+            System.out.print("do you like to add the dish to the cart? (Y/N): ");
             Scanner addChoice = new Scanner(System.in);
             char choice = addChoice.next().charAt(0);
             switch (choice) {
@@ -46,7 +45,7 @@ public class Main {
                     Dish userDish = userMenu.menu.get(dishNum);
                     userOrder.addCart(userDish);
                     userOrder.showCart();
-                    System.out.printf("want to keep browsing or checkout ?:");
+                    System.out.print("want to keep browsing or checkout ?:");
                     String cartChoice = addChoice.next();
                     if (Objects.equals(cartChoice, "checkout")) { //using Objects.equals to make it null safe
                         infLoop = false;
@@ -58,13 +57,14 @@ public class Main {
                     continue;
                 }
                 default: {
-                    System.out.printf("unexpected error");
+                    System.out.print("unexpected error");
                 }
 
 
             }
         }
 
+       //checkout loop:
         while (!infLoop) {
 
             userOrder.finalCart();
@@ -74,9 +74,34 @@ public class Main {
             switch (choice) {
                 case 'y':
                 case 'Y': {
+                    boolean checkoutFlag=true;
+                    //edit the cart loop:
+                    while (checkoutFlag){
+                    System.out.print("""
+                            1.to Show the items in the cart
+                            2.to Increase items quantities
+                            3.to Remove item
+                            4.to Apply discounts or promotions
+                            5.to Checkout
+                            """);
+                            Scanner cartChoice = new Scanner(System.in);
+                            int cChoice = cartChoice.nextInt();
+                            switch (cChoice){
+                                case 1:{userOrder.showCart();break;}
+                                case 2:{userOrder.increaseCart();break;}
+                                case 3:{userOrder.removeCart();break;}
+                                case 4:{userOrder.discount();break;}
+                                case 5:{checkoutFlag=false;break;}
+                                default:{
+                                    System.out.print("Enter a valid number (1-5):");
+                                }
+                            }
+
+                    }
                 }
                 case 'n':
                 case 'N': {
+                    userOrder.finalCart();
                     infLoop = true;
                 }
                 default: {

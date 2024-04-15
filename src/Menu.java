@@ -98,7 +98,7 @@ public class Menu {
             String name = dish.getName();
             String description = dish.getDescription();
             double price = dish.getPrice();
-            System.out.println(STR."\{name}: \{price}%n\{description}" );
+            System.out.println(STR."\{name}: \{price} \n\{description}" );
 
     }
     public void getDishMenu(){

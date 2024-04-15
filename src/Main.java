@@ -45,14 +45,16 @@ public class Main {
             {
                 Dish userDish = userMenu.menu.get(dishNum);
                 userOrder.addCart(userDish);
+                userOrder.showCart();
+                System.out.printf("want to keep browsing or checkout ?:");
+                String cartChoice =addChoice.next();
+                if (cartChoice != "browsing" && cartChoice != "continue") {
+                    infLoop = false;
+                }
                 break;
             }
             case 'n':
-            case 'N':
-            {
-
-
-            }
+            case 'N':{continue;}
             default:{
                 System.out.printf("unexpected error");
             }

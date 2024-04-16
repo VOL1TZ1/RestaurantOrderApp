@@ -113,18 +113,10 @@ public class Menu {
     //constructor to make 3 types of a menu:
     Menu(int i){
         switch (i) {
-            case 1 -> {
-                addMenu1(menu);
-            }
-            case 2 -> {
-                addMenu2(menu);
-            }
-            case 3 -> {
-                addMenu3(menu);
-            }
-            default -> {
-                System.out.println("No menu here yet ;)");
-            }
+            case 1 -> addMenu1(menu);
+            case 2 -> addMenu2(menu);
+            case 3 -> addMenu3(menu);
+            default -> System.out.println("No menu here yet ;)");
         }
     }
 }

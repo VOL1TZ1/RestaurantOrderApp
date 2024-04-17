@@ -2,8 +2,8 @@ public class Dish {
     //The Class Variables:
     private String name, description;
     private double price;
-
     private int numInStock;
+    private int numDishesOrdered;
 
     //Default constructor:
     public Dish() {
@@ -25,12 +25,16 @@ public class Dish {
     void setName(String name){this.name=name;}
     void setDescription(String description){this.description=description;}
     void setPrice(double price){this.price=price;}
+    //this should be implemented but due to time constraints it will be a future work
+    //void decreaseStock(int num){numInStock -= num;}
+    void incrementNumberOfDishesOrdered(){numDishesOrdered++;}
+    void decrementNumberOfDishesOrdered(){numDishesOrdered--;}
 
     //The "Get" methods:
     String getName(){return this.name;}
     String getDescription(){return this.description;}
     double getPrice(){return this.price;}
-
+    int getNumDishesOrdered(){return this.numDishesOrdered;}
     int getNumInStock(){return this.numInStock;}
 
 }

@@ -61,7 +61,7 @@ public class Main {
             char choice = addChoice.next().toLowerCase().charAt(0);
             switch (choice) {
                 case 'y':
-                    Dish userDish = userMenu.menu.get(dishNum);
+                    Dish userDish = userMenu.menu.get(dishNum-1);
                     if(0 == userDish.getNumInStock()){
                         System.out.println("The dish selected cannot be added to the cart!");
                     } else{
@@ -95,17 +95,17 @@ public class Main {
             char choice = addChoice.next().toLowerCase().charAt(0);
             switch (choice) {
                 case 'y':
-                case 'Y': {
                     boolean checkoutFlag = true;
                     //edit the cart loop:
                     while (checkoutFlag) {
+                        System.out.println("--------------Cart Modification--------------");
                         System.out.print("""
-                            1.to Show the items in the cart
-                            2.to Increase items quantities
-                            3.to Remove item
-                            4.to Apply discounts or promotions
-                            5.to Checkout
-                            """);
+                                (1) Show items in cart
+                                (2) Modify item quantities
+                                (3) Remove item
+                                (4) Enter promo code
+                                (5) Confirm order
+                                """);
                         Scanner cartChoice = new Scanner(System.in);
                         int cChoice = cartChoice.nextInt();
                         switch (cChoice) {
@@ -122,34 +122,28 @@ public class Main {
                                 break;
                             }
                             case 4: {
-                                userOrder.discount();
+                                userOrder.applyCoupon();
                                 break;
                             }
                             case 5: {
                                 checkoutFlag = false;
+                                System.out.println("Order confirmed successfully! Thank you for using our humble app :)");
                                 break;
                             }
                             default: {
-                                System.out.print("Enter a valid number (1-5):");
+                                System.out.print("Invalid Input detected! Please enter one of the numbers between parentheses: ");
                             }
                         }
 
                     }
-                }
                 case 'n':
-                case 'N': {
-                    userOrder.finalCart();
+                    System.out.println("Order confirmed successfully! Thank you for using our humble app :)");
                     infLoop = true;
-                }
-                default: {
-                    System.out.print("unexpected error");
-                }
-
-
+                    break;
+                default:
+                    System.out.print("Invalid input detected! Please try again..");
             }
-
         }
-
-
+        userOrder.confirmPayment();
     }
 }

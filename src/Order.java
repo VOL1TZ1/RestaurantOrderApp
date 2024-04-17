@@ -15,7 +15,8 @@ public class Order {
     }
     public void removeCart(){
         for (int i = 0; i < cart.size(); i++){
-            System.out.println(STR."\{i + 1}.\{cart.get(i).getName()}:");
+            System.out.printf("%d.%s:\n", i+1, cart.get(i).getName());
+            //System.out.println(STR."\{i + 1}.\{cart.get(i).getName()}:");
         }
         System.out.print("Enter the item's number: ");
         Scanner dishNum= new Scanner(System.in);
@@ -26,13 +27,15 @@ public class Order {
     }
     public void showCart(){
         for (int i = 0; i < cart.size(); i++){
-            System.out.println(STR."\{i + 1}.\{cart.get(i).getName()}: \{cart.get(i).getPrice()}");
+            System.out.printf("%d.%s: %.2f\n", i+1, cart.get(i).getName(), cart.get(i).getPrice());
+            //System.out.println(STR."\{i + 1}.\{cart.get(i).getName()}: \{cart.get(i).getPrice()}");
         }
         System.out.printf("The total: %.2f \n" , total);
     }
     public void finalCart(){
         for (int i = 0; i < cart.size(); i++){
-            System.out.println(STR."\{i + 1}.\{cart.get(i).getName()}: \{cart.get(i).getPrice()}");
+            System.out.printf("%d.%s: %.2f\n", i+1, cart.get(i).getName(), cart.get(i).getPrice());
+            //System.out.println(STR."\{i + 1}.\{cart.get(i).getName()}: \{cart.get(i).getPrice()}");
         }
         System.out.printf("The order: %.2f \n" ,total);
         System.out.printf("Tax: %.2f \n",total*taxPercent);
@@ -45,7 +48,8 @@ public class Order {
     public void increaseCart(){
 
         for (int i = 0; i < this.cart.size(); i++){
-            System.out.println(STR."\{i + 1}.\{cart.get(i).getName()}:");
+            System.out.printf("%d.%s:\n", i+1, cart.get(i).getName());
+            //System.out.println(STR."\{i + 1}.\{cart.get(i).getName()}:");
         }
         System.out.print("Enter the item's number: ");
         Scanner dishNum= new Scanner(System.in);

@@ -132,9 +132,9 @@ public class Main {
                             }
                             default: {
                                 System.out.print("Invalid Input detected! Please enter one of the numbers between parentheses: ");
+                                break;
                             }
                         }
-
                     }
                 case 'n':
                     System.out.println("Order confirmed successfully! Thank you for using our humble app :)");

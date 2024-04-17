@@ -45,6 +45,10 @@ public class Order {
         System.out.println("+-------+---------------------------+---------------------------+");
     }
     public void finalCart(){
+        total = 0;
+        for(Dish d: cart){
+            total += (d.getPrice() * d.getNumDishesOrdered());
+        }
         System.out.printf("""
                 Subtotal: %.2f\s
                 Tax: %.2f

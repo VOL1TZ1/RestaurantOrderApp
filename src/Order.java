@@ -5,30 +5,35 @@ import java.util.Scanner;
 public class Order {
     ArrayList<Dish> cart = new ArrayList<>(); //list of dishes to act as a cart.
     static double total; // a variable the total will be calculated in.
-    double taxPercent = 0.12; //taxes is 12%
+    double taxPercent = 0.14; //taxes is 14%
     double discount = 0;
     String paymentOption;
-    public void addCart(Dish cDish){
+    private String specialRequirements;
+    public void setSpecialRequirements(String req){specialRequirements = req;}
+    public void addToCart(Dish cDish){
         boolean duplicateItem = false;
         //check if the same dish is ordered multiple times
         for(Dish item:cart){
             if(Objects.equals(item.getName(), cDish.getName())){
                 item.incrementNumberOfDishesOrdered();
+                item.decreaseStock(1);
                 duplicateItem = true;
                 break;
             }
         }
         if(!duplicateItem){
             cDish.incrementNumberOfDishesOrdered();
+            cDish.decreaseStock(1);
             cart.add(cDish);
         }
         total+= cDish.getPrice();
     }
-    public void removeCart(){
+    public void removeFromCart(){
         System.out.print("Enter the item's number: ");
         Scanner dishNum= new Scanner(System.in);
         int itemNum =dishNum.nextInt();
-        total -= cart.get(itemNum-1).getPrice();
+        total -= (cart.get(itemNum-1).getPrice() * cart.get(itemNum - 1).getNumDishesOrdered());
+        cart.get(itemNum - 1).decreaseStock(cart.get(itemNum - 1).getNumDishesOrdered());
         cart.remove(itemNum-1);
         showCart();
     }
@@ -50,47 +55,60 @@ public class Order {
             total += (d.getPrice() * d.getNumDishesOrdered());
         }
         System.out.printf("""
-                Subtotal: %.2f\s
-                Tax: %.2f
-                Discount: %.2f
-                \u001B[1mTotal:\u001B[0m %.2f
-                """, total, total*taxPercent, total*discount, ((total*taxPercent)+total) - (total*discount));
+                Subtotal: %.2f EGP\s
+                Tax: %.2f EGP
+                Discount: %.2f EGP
+                Total before discount: \u001B[31m%.2f EGP\u001B[0m
+                Total after discount: \u001B[32m%.2f EGP\u001B[0m
+                """, total, total*taxPercent, total*discount, (total*taxPercent)+total, ((total*taxPercent)+total) - (total*discount));
+        System.out.println("Special Requirements:\n" + specialRequirements);
     }
-    public void increaseCart(){
+    public void increaseItemQuantities(){
         System.out.print("Enter the item's number: ");
         Scanner dishNum= new Scanner(System.in);
         int itemNum =dishNum.nextInt();
         System.out.print("Enter modification value (+) to increase/(-) to decrease. For example, +2 will increase the number of dishes by 2.: ");
-//        System.out.print("How many times do you want to increase the quantity of the dish : ");
         String userInput = dishNum.next();
         if('+' == userInput.charAt(0)){
             for(int i = 0; i < Integer.parseInt(userInput.substring(1)); i++){
                 cart.get(itemNum-1).incrementNumberOfDishesOrdered();
             }
+            cart.get(itemNum - 1).decreaseStock(Integer.parseInt(userInput.substring(1)));
         } else if('-' == userInput.charAt(0)){
             for(int i = 0; i < Integer.parseInt(userInput.substring(1)); i++){
                 cart.get(itemNum-1).decrementNumberOfDishesOrdered();
             }
+            cart.get(itemNum - 1).increaseStock(Integer.parseInt(userInput.substring(1)));
         }
+        showCart();
     }
     public void applyCoupon(){
         String[] coupons = new String[]{"WE10","NBE10","CIB10","NBK10","QNB10"};
-        System.out.print("Enter promo code: ");
-        Scanner userCoupon = new Scanner(System.in);
-        String enteredCoupon = userCoupon.next();
         boolean isCouponValid = false;
-        for (String coupon: coupons) {
-            if(Objects.equals(enteredCoupon, coupon)){
-                discount = 0.1;
-                isCouponValid = true;
-                break;
+        boolean isCouponSessionRunning = true;
+        while(isCouponSessionRunning){
+            System.out.print("Enter promo code: ");
+            Scanner userCoupon = new Scanner(System.in);
+            String enteredCoupon = userCoupon.next();
+            for (String coupon: coupons) {
+                if(Objects.equals(enteredCoupon, coupon)){
+                    discount = 0.1;
+                    isCouponValid = true;
+                    break;
+                }
             }
-        }
-        if(isCouponValid){
-            System.out.println("Promo code is valid");
-            finalCart();
-        } else{
-            System.out.println("Promo code is invalid");
+            if(isCouponValid){
+                System.out.println("Hurray!! Promo code is valid");
+                finalCart();
+                isCouponSessionRunning = false;
+            } else{
+                System.out.println("Oops! Promo code is invalid");
+                System.out.println("Do you want to try again? (y/n)");
+                char choice = userCoupon.next().toLowerCase().charAt(0);
+                if('n' == choice){
+                    isCouponSessionRunning = false;
+                }
+            }
         }
     }
 

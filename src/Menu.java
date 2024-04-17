@@ -1,13 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Menu {
-    ArrayList<Dish> menu= new ArrayList<>();
-
-
-//methods to add and remove dishes(as of this moment not needed):
-    // void addItems(Dish newDish){menu.add(newDish);}
-    // void removeItem(Dish dish){menu.remove(dish);}
-
+    ArrayList<Dish> appetizersMenu = new ArrayList<>();
+    ArrayList<Dish> mainCourseMenu = new ArrayList<>();
+    ArrayList<Dish> dessertsMenu = new ArrayList<>();
 
     //methods to fill the 3 menus:
     private void mainCourseDishesMenu(ArrayList<Dish> menu){
@@ -66,8 +63,8 @@ public class Menu {
 
     private void appetizersMenu(ArrayList<Dish> menu){
         String[] dishNames = {
-                "Bruschetta",
-                "Caprese Salad",
+                "Brochette",
+                "Caresse Salad",
                 "Spinach Artichoke Dip",
                 "Chicken Wings",
                 "Mozzarella Sticks",
@@ -112,8 +109,8 @@ public class Menu {
         int numberOfDishes = 8;
 
         for (int i = 0; i < numberOfDishes; i++){
-            Dish dish = new Dish(dishNames[i], dishDescriptions[i], dishPrices[i], dishStock[i]);
-            menu.add(dish);
+                Dish dish = new Dish(dishNames[i], dishDescriptions[i], dishPrices[i], dishStock[i]);
+                menu.add(dish);
         }
     }
 
@@ -169,28 +166,45 @@ public class Menu {
     }
 
     //get all dish name:
-    public void getDishInfo(int i){
-        //ArrayList<Dish> dishes = this.menu;
-
-            Dish dish = menu.get(i-1);
+    public void getDishInfo(int menuSelected, int dishIndex){
+            ArrayList<Dish> menu = appetizersMenu;
+            switch(menuSelected){
+                case 1 -> menu = appetizersMenu;
+                case 2 -> menu = mainCourseMenu;
+                case 3 -> menu = dessertsMenu;
+            }
+            Dish dish = menu.get(dishIndex-1);
             String name = dish.getName();
             String description = dish.getDescription();
             double price = dish.getPrice();
-            String availability = "available";
+            String availability;
             if(0 == dish.getNumInStock()){
                 availability = "\u001B[31mnot available\u001B[0m";
             } else{
                 availability = "\u001B[32mavailable\u001B[0m";
             }
             System.out.println("------Selected Dish------");
-            System.out.printf("Name: %s\t|\tDish is " + availability + "%nPrice: %.2f EGP%n%s\n", name, price, description);
-            //System.out.println(STR."\{name}: \{price} \n\{description}" );
-
+            System.out.printf("Name: %s\t|\tDish is " + availability + "%nPrice: \u001B[93m%.2f\u001B[0m EGP%nDish Contents: %s\n", name, price, description);
+    }
+    public Dish getDishFromMenu(int menuSelected, int dishIndex){
+        ArrayList<Dish> menu = appetizersMenu;
+        switch(menuSelected){
+            case 1 -> menu = appetizersMenu;
+            case 2 -> menu = mainCourseMenu;
+            case 3 -> menu = dessertsMenu;
+        }
+        return menu.get(dishIndex);
     }
     /*
     * Outputs the list of dishes
     * */
-    public void getDishMenu(){
+    public void getDishMenu(int menuSelected){
+        ArrayList<Dish> menu = appetizersMenu;
+        switch(menuSelected){
+            case 1 -> menu = appetizersMenu;
+            case 2 -> menu = mainCourseMenu;
+            case 3 -> menu = dessertsMenu;
+        }
         System.out.println("""
                 =========================================================================\s
                 \t\t|  No.\t|\t\t  Dish Name\t\t    |\t  Price\t\t|\tStock\t|
@@ -204,15 +218,11 @@ public class Menu {
         }
         System.out.println("\t\t+-------+---------------------------+---------------------------+");
      }
-    //constructor to make 3 types of a menu:
-    Menu(int i){
-        switch (i) {
-            case 1 -> appetizersMenu(menu);
-            case 2 -> mainCourseDishesMenu(menu);
-            case 3 -> dessertsMenu(menu);
-            //the default is useless anyway
-            default -> System.out.println("No menu here yet ;)");
-        }
-    }
 
+    //constructor to make 3 types of a menu:
+    Menu(){
+        appetizersMenu(appetizersMenu);
+        mainCourseDishesMenu(mainCourseMenu);
+        dessertsMenu(dessertsMenu);
+    }
 }

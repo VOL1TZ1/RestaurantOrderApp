@@ -25,8 +25,9 @@ public class Dish {
     void setName(String name){this.name=name;}
     void setDescription(String description){this.description=description;}
     void setPrice(double price){this.price=price;}
-    //this should be implemented but due to time constraints it will be a future work
-    //void decreaseStock(int num){numInStock -= num;}
+    void setNumInStock(int stock){this.numInStock = stock;}
+    void decreaseStock(int num){numInStock -= num;}
+    void increaseStock(int num){numInStock += num;}
     void incrementNumberOfDishesOrdered(){numDishesOrdered++;}
     void decrementNumberOfDishesOrdered(){numDishesOrdered--;}
 
@@ -36,5 +37,4 @@ public class Dish {
     double getPrice(){return this.price;}
     int getNumDishesOrdered(){return this.numDishesOrdered;}
     int getNumInStock(){return this.numInStock;}
-
 }

@@ -22,10 +22,10 @@ public class Dish {
     }
 
     //The "Set" methods:
-    void setName(String name){this.name=name;}
-    void setDescription(String description){this.description=description;}
-    void setPrice(double price){this.price=price;}
-    void setNumInStock(int stock){this.numInStock = stock;}
+    //void setName(String name){this.name=name;}
+    //void setDescription(String description){this.description=description;}
+    //void setPrice(double price){this.price=price;}
+    //void setNumInStock(int stock){this.numInStock = stock;}
     void decreaseStock(int num){numInStock -= num;}
     void increaseStock(int num){numInStock += num;}
     void incrementNumberOfDishesOrdered(){numDishesOrdered++;}

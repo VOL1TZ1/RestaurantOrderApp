@@ -4,6 +4,7 @@ public class Main {
     private static String pageDivider;
     private static Order userOrder;
     private static boolean stillBrowsing = true;
+    private static boolean isCartEmpty = true;
     public static void main(String[] args) {
         /*Initializations*/
         userMenu = new Menu();
@@ -21,6 +22,7 @@ public class Main {
             if(isNewOrder){
                 userOrder = new Order();
                 isNewOrder = false;
+                stillBrowsing = true;
             }
             /************************** Main menu **************************/
             System.out.println(pageDivider);
@@ -125,7 +127,10 @@ public class Main {
                 }
             }
         }
-        if(!stillBrowsing){
+
+        isCartEmpty = userOrder.cart.isEmpty();
+
+        if(!stillBrowsing && !isCartEmpty){
             /************************** Checkout menu **************************/
             System.out.println(pageDivider);
             System.out.println("""
@@ -133,7 +138,7 @@ public class Main {
                     =========================================================================""");
         }
         //checkout loop:
-        while (!stillBrowsing) {
+        while (!stillBrowsing && !isCartEmpty) {
             goToCart();
         }
     }
@@ -193,13 +198,16 @@ public class Main {
                 }
             }
         }
+        isCartEmpty = userOrder.cart.isEmpty();
         /************************** Checkout menu **************************/
-        System.out.println(pageDivider);
-        System.out.println("""
-                \t\t\t\t\t\t\tCheckout Menu\s
-                =========================================================================""");
+        if(!stillBrowsing && !isCartEmpty){
+            System.out.println(pageDivider);
+            System.out.println("""
+                    \t\t\t\t\t\t\tCheckout Menu\s
+                    =========================================================================""");
+        }
         //checkout loop:
-        while (!stillBrowsing) {
+        while (!stillBrowsing && !isCartEmpty) {
             goToCart();
         }
     }

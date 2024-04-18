@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Menu {
     ArrayList<Dish> appetizersMenu = new ArrayList<>();
     ArrayList<Dish> mainCourseMenu = new ArrayList<>();
     ArrayList<Dish> dessertsMenu = new ArrayList<>();
-
+    ArrayList<Dish> searchResultsMenu = new ArrayList<>();
     //methods to fill the 3 menus:
     private void mainCourseDishesMenu(ArrayList<Dish> menu){
         String[] dishNames = {
@@ -172,6 +174,7 @@ public class Menu {
                 case 1 -> menu = appetizersMenu;
                 case 2 -> menu = mainCourseMenu;
                 case 3 -> menu = dessertsMenu;
+                case 4 -> menu = searchResultsMenu;
             }
             Dish dish = menu.get(dishIndex-1);
             String name = dish.getName();
@@ -192,6 +195,7 @@ public class Menu {
             case 1 -> menu = appetizersMenu;
             case 2 -> menu = mainCourseMenu;
             case 3 -> menu = dessertsMenu;
+            case 4 -> menu = searchResultsMenu;
         }
         return menu.get(dishIndex);
     }
@@ -199,11 +203,12 @@ public class Menu {
     * Outputs the list of dishes
     * */
     public void getDishMenu(int menuSelected){
-        ArrayList<Dish> menu = appetizersMenu;
+        ArrayList<Dish> menu = new ArrayList<>();
         switch(menuSelected){
             case 1 -> menu = appetizersMenu;
             case 2 -> menu = mainCourseMenu;
             case 3 -> menu = dessertsMenu;
+            case 4 -> menu = searchResultsMenu;
         }
         System.out.println("""
                 =========================================================================\s
@@ -224,5 +229,40 @@ public class Menu {
         appetizersMenu(appetizersMenu);
         mainCourseDishesMenu(mainCourseMenu);
         dessertsMenu(dessertsMenu);
+    }
+
+    public boolean searchForDishes(String key){
+        boolean matchFound = false;
+        //search for elements in the appetizers menu
+        Pattern pattern = Pattern.compile(".*"+key+".*", Pattern.CASE_INSENSITIVE);
+        for(Dish item: appetizersMenu){
+            Matcher matcher = pattern.matcher(item.getName());
+            if(matcher.find()){
+                searchResultsMenu.add(item);
+            }
+        }
+        //search for element in the main course menu
+        for(Dish item: mainCourseMenu){
+            Matcher matcher = pattern.matcher(item.getName());
+            if(matcher.find()){
+                searchResultsMenu.add(item);
+            }
+        }
+        //search for element in the dessert menu
+        for(Dish item: dessertsMenu){
+            Matcher matcher = pattern.matcher(item.getName());
+            if(matcher.find()){
+                searchResultsMenu.add(item);
+            }
+        }
+        System.out.println("\t\t\t\t\t\t\tSearch Results");
+        if(searchResultsMenu.isEmpty()){
+            System.out.println("=========================================================================");
+            System.out.println("Oops!! The dish your are looking for is not there yet. :O");
+        } else {
+            getDishMenu(4);
+            matchFound = true;
+        }
+        return matchFound;
     }
 }

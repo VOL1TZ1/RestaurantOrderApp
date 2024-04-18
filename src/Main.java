@@ -3,6 +3,7 @@ public class Main {
     private static Menu userMenu;
     private static String pageDivider;
     private static Order userOrder;
+    private static boolean stillBrowsing = true;
     public static void main(String[] args) {
         /*Initializations*/
         userMenu = new Menu();
@@ -38,6 +39,7 @@ public class Main {
                     browseOption();
                     break;
                 case '2':
+                    searchOption();
                     break;
                 case 'e':
                     sessionEnded = true;
@@ -58,8 +60,6 @@ public class Main {
         }
     }
     private static void browseOption(){
-        //local variables
-        boolean stillBrowsing = true;
         //start of browsing loop
         while (stillBrowsing) {
             System.out.println("""
@@ -110,11 +110,6 @@ public class Main {
                 switch (choice) {
                     case 'y':
                         userOrder.addToCart(userDish);
-                        System.out.print("Do you want to keep browsing? (y/n): ");
-                        char cartChoice = addChoice.next().toLowerCase().charAt(0);
-                        if ('n' == cartChoice) {
-                            stillBrowsing = false;
-                        }
                         break;
                     case 'n':
                         break;
@@ -122,6 +117,11 @@ public class Main {
                         System.out.print("Invalid input detected! Please try again..");
                         break;
                     }
+                }
+                System.out.print("Do you want to keep browsing? (y/n): ");
+                char cartChoice = addChoice.next().toLowerCase().charAt(0);
+                if ('n' == cartChoice) {
+                    stillBrowsing = false;
                 }
             }
         }
@@ -134,73 +134,138 @@ public class Main {
         }
         //checkout loop:
         while (!stillBrowsing) {
-            userOrder.showCart();
-            System.out.print("Do you want to make any changes to cart (y/n): ");
-            Scanner addChoice = new Scanner(System.in);
-            char choice = addChoice.next().toLowerCase().charAt(0);
-            switch (choice) {
-                case 'y':
-                    boolean checkoutFlag = true;
-                    //edit the cart loop:
-                    while (checkoutFlag) {
-                        System.out.println("--------------Cart Modifications--------------");
-                        System.out.print("""
-                                    (1) Modify item quantities
-                                    (2) Remove item
-                                    (3) Confirm order
-                                    """);
-                        Scanner cartChoice = new Scanner(System.in);
-                        int cChoice = cartChoice.nextInt();
-                        switch (cChoice) {
-                            case 1: {
-                                userOrder.increaseItemQuantities();
-                                break;
-                            }
-                            case 2: {
-                                userOrder.removeFromCart();
-                                break;
-                            }
-                            case 3: {
-                                checkoutFlag = false;
-                                break;
-                            }
-                            default: {
-                                System.out.print("Invalid Input detected! Please enter one of the numbers between parentheses: ");
-                                break;
-                            }
-                        }
-                    }
-                case 'n':
-                    stillBrowsing = true;
-                    break;
-                default:
-                    System.out.print("Invalid input detected! Please try again..");
-            }
-            System.out.println("Would you like to add any special requirements? (y/n)");
-            Scanner instructionsChoice = new Scanner(System.in);
-            choice = instructionsChoice.next().toLowerCase().charAt(0);
-            instructionsChoice.nextLine();
-            if('y' == choice){
-                System.out.println("Please enter instructions:");
-                userOrder.setSpecialRequirements(instructionsChoice.nextLine());
-            }
-            System.out.println("Do you have a valid promo code? (y/n)");
-            choice = instructionsChoice.next().toLowerCase().charAt(0);
-            if('y' == choice){
-                userOrder.applyCoupon();
-            }
-            userOrder.finalCart();
-            /************************** Payment menu **************************/
-            System.out.println(pageDivider);
-            System.out.println("""
-                    \t\t\t\t\t\t\tPayment Menu\s
-                    =========================================================================""");
-            userOrder.confirmPayment();
-            System.out.println("Order confirmed successfully!");
+            goToCart();
         }
     }
 
     private static void searchOption(){
-
+        Scanner userInput = new Scanner(System.in);
+        //local variables
+        boolean matchSucceeded = false;
+        String searchKey;
+        //start of browsing loop
+        while (stillBrowsing) {
+            while (!matchSucceeded){
+                    System.out.println("Please insert the dish name you want to search for:");
+                    searchKey = userInput.nextLine();
+                    System.out.println(pageDivider);
+                    matchSucceeded = userMenu.searchForDishes(searchKey);
+            }
+            System.out.print("Please enter dish number: ");
+            //keeping track of dish number
+            int dishNum = userInput.nextInt();
+            //a loop to make sure the user choose a valid dish number
+            while (dishNum > 8 || dishNum < 1) {
+                System.out.print("Invalid Input detected! Please enter a valid dish number: ");
+                dishNum = userInput.nextInt();
+            }
+            //get the dish the user ordered
+            Dish userDish = userMenu.getDishFromMenu(4, dishNum - 1);
+            if (0 == userDish.getNumInStock()) {
+                System.out.println("Oops! The dish selected is \u001B[31mout of stock\u001B[0m. Try another dish.");
+            } else {
+                //show the dish info
+                userMenu.getDishInfo(4, dishNum);
+                System.out.print("do you like to add the dish to cart? (y/n): ");
+                Scanner addChoice = new Scanner(System.in);
+                char choice = addChoice.next().toLowerCase().charAt(0);
+                switch (choice) {
+                    case 'y':
+                        userOrder.addToCart(userDish);
+                        break;
+                    case 'n':
+                        break;
+                    default: {
+                        System.out.print("Invalid input detected! Please try again..");
+                        break;
+                    }
+                }
+                System.out.print("Do you want to add another dish? (y/n): ");
+                char userChoice = addChoice.next().toLowerCase().charAt(0);
+                if ('n' == userChoice) {
+                    System.out.print("Do you want to search for another dish? (y/n): ");
+                    userChoice = addChoice.next().toLowerCase().charAt(0);
+                    if('n' == userChoice){
+                        stillBrowsing = false;
+                    } else {
+                        matchSucceeded = false;
+                    }
+                }
+            }
+        }
+        /************************** Checkout menu **************************/
+        System.out.println(pageDivider);
+        System.out.println("""
+                \t\t\t\t\t\t\tCheckout Menu\s
+                =========================================================================""");
+        //checkout loop:
+        while (!stillBrowsing) {
+            goToCart();
+        }
     }
+   private static void goToCart(){
+       userOrder.showCart();
+       System.out.print("Do you want to make any changes to cart (y/n): ");
+       Scanner addChoice = new Scanner(System.in);
+       char choice = addChoice.next().toLowerCase().charAt(0);
+       switch (choice) {
+           case 'y':
+               boolean checkoutFlag = true;
+               //edit the cart loop:
+               while (checkoutFlag) {
+                   System.out.println("--------------Cart Modifications--------------");
+                   System.out.print("""
+                                    (1) Modify item quantities
+                                    (2) Remove item
+                                    (3) Confirm order
+                                    """);
+                   Scanner cartChoice = new Scanner(System.in);
+                   int cChoice = cartChoice.nextInt();
+                   switch (cChoice) {
+                       case 1: {
+                           userOrder.increaseItemQuantities();
+                           break;
+                       }
+                       case 2: {
+                           userOrder.removeFromCart();
+                           break;
+                       }
+                       case 3: {
+                           checkoutFlag = false;
+                           break;
+                       }
+                       default: {
+                           System.out.print("Invalid Input detected! Please enter one of the numbers between parentheses: ");
+                           break;
+                       }
+                   }
+               }
+           case 'n':
+               stillBrowsing = true;
+               break;
+           default:
+               System.out.print("Invalid input detected! Please try again..");
+       }
+       System.out.println("Would you like to add any special requirements? (y/n)");
+       Scanner instructionsChoice = new Scanner(System.in);
+       choice = instructionsChoice.next().toLowerCase().charAt(0);
+       instructionsChoice.nextLine();
+       if('y' == choice){
+           System.out.println("Please enter instructions:");
+           userOrder.setSpecialRequirements(instructionsChoice.nextLine());
+       }
+       System.out.println("Do you have a valid promo code? (y/n)");
+       choice = instructionsChoice.next().toLowerCase().charAt(0);
+       if('y' == choice){
+           userOrder.applyCoupon();
+       }
+       userOrder.finalCart();
+       /************************** Payment menu **************************/
+       System.out.println(pageDivider);
+       System.out.println("""
+                    \t\t\t\t\t\t\tPayment Menu\s
+                    =========================================================================""");
+       userOrder.confirmPayment();
+       System.out.println("Order confirmed successfully!");
+   }
 }

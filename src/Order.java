@@ -38,21 +38,24 @@ public class Order {
         showCart();
     }
     public void showCart(){
-        System.out.println("\t\t\t\t\t\t\tCart Items");
+        System.out.println("\t\t\t\t\t\t\t\t\tCart Items");
         System.out.println("""
-                -----------------------------------------------------------------\s
-                |  No.\t|\t\t  Dish Name\t\t    |\t  Price\t\t| Quantity  |
-                +-------+---------------------------+---------------------------+""");
+                \t\t+-------+---------------------------+---------------+-----------+\s
+                \t\t|  No.\t|\t\t  Dish Name\t\t    |\t  Price\t\t| Quantity  |
+                \t\t+-------+---------------------------+---------------+-----------+""");
         for (int i = 0; i < cart.size(); i++) {
-            System.out.printf("|\t%-2d\t|\t%-24s|\t%-3.2f EGP\t|\t  %-2d\t|%n",
+            System.out.printf("\t\t|\t%-2d\t|\t%-24s|\t%-3.2f EGP\t|\t  %-2d\t|%n",
                     i+1, cart.get(i).getName(), cart.get(i).getPrice(), cart.get(i).getNumDishesOrdered());
         }
-        System.out.println("+-------+---------------------------+---------------------------+");
+        System.out.println("\t\t+-------+---------------------------+---------------+-----------+");
     }
     public void finalCart(){
         total = 0;
         for(Dish d: cart){
             total += (d.getPrice() * d.getNumDishesOrdered());
+        }
+        if(specialRequirements == null){
+            specialRequirements = "None";
         }
         System.out.printf("""
                 Subtotal: %.2f EGP\s
@@ -99,13 +102,14 @@ public class Order {
             }
             if(isCouponValid){
                 System.out.println("Hurray!! Promo code is valid");
-                finalCart();
+                System.out.println();
                 isCouponSessionRunning = false;
             } else{
                 System.out.println("Oops! Promo code is invalid");
                 System.out.println("Do you want to try again? (y/n)");
                 char choice = userCoupon.next().toLowerCase().charAt(0);
                 if('n' == choice){
+                    System.out.println();
                     isCouponSessionRunning = false;
                 }
             }

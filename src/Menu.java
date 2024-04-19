@@ -6,7 +6,7 @@ public class Menu {
     ArrayList<Dish> appetizersMenu = new ArrayList<>();
     ArrayList<Dish> mainCourseMenu = new ArrayList<>();
     ArrayList<Dish> dessertsMenu = new ArrayList<>();
-    ArrayList<Dish> searchResultsMenu = new ArrayList<>();
+    ArrayList<Dish> searchResultsMenu;
     //methods to fill the 3 menus:
     private void mainCourseDishesMenu(ArrayList<Dish> menu){
         String[] dishNames = {
@@ -211,8 +211,9 @@ public class Menu {
         }
         System.out.println("""
                 =========================================================================\s
+                \t\t+-------+---------------------------+---------------+-----------+
                 \t\t|  No.\t|\t\t  Dish Name\t\t    |\t  Price\t\t|\tStock\t|
-                \t\t+-------+---------------------------+---------------------------+""");
+                \t\t+-------+---------------------------+---------------+-----------+""");
         for (int i = 0; i < menu.size(); i++) {
             Dish dish = menu.get(i);
             String name = dish.getName();
@@ -220,7 +221,7 @@ public class Menu {
             int stock = dish.getNumInStock();
             System.out.printf("\t\t|\t%-2d\t|\t%-24s|\t%-3.2f EGP\t|\t  %-2d\t|%n", i+1, name, price, stock);
         }
-        System.out.println("\t\t+-------+---------------------------+---------------------------+");
+        System.out.println("\t\t+-------+---------------------------+---------------+-----------+");
      }
 
     //constructor to make 3 types of a menu:
@@ -231,6 +232,7 @@ public class Menu {
     }
 
     public boolean searchForDishes(String key){
+        searchResultsMenu = new ArrayList<>();
         boolean matchFound = false;
         //search for elements in the appetizers menu
         Pattern pattern = Pattern.compile(".*"+key+".*", Pattern.CASE_INSENSITIVE);

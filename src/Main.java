@@ -83,7 +83,7 @@ public class Main {
                     (1) Appetizers
                     (2) Main Course Dishes
                     (3) Desserts
-                    (0) To return to the main menu""");
+                    (0) To return to the main menu (\u001B[31mCaution!! This option will automatically cancel your order\u001B[0m)""");
             Scanner sMenu = new Scanner(System.in);
             //keeping track of which menu to use
             int categoryNum = sMenu.nextInt();

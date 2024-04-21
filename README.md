@@ -4,7 +4,7 @@
 * Ahmed Nasr Abdul Aziz
   >[LinkedIN](https://www.linkedin.com/in/ahmed-nasr-122462109/) profile
 * Mazen Mohammed
-  >[LinkedIN]() profile
+  >[LinkedIN](https://www.linkedin.com/in/mohamed-eltaher220/) profile
 * Mohammed El Taher
   >[LinkedIN]() profile
 * Mohamed Elmaadawy

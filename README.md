@@ -28,7 +28,7 @@ Please note that the app uses `openjdk-22`.
 Finally, there is a live demo video in the `Demo` folder that shows the app running with an ordering scenario using both browsing and search features.
 ## 3. Program's UML diagram
 ![alt text][UML]
-## 4. Progeam's Flowchart
+## 4. Program's Flowchart
 ![alt text][FLOWCHART]
 ## 5. Project's ROI
 ![alt text][ROI]

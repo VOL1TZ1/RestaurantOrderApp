@@ -1,6 +1,12 @@
-# Welcome to our humble ordering app
+# Welcome to our humble ordering app:
+## Project Contributors:
+
+* Ahmed Nasr Abdul Aziz
+* Mazen Mohammed
+* Mohammed El Taher
+* Mohamed Elmaadawy
 ## Introduction
-This app is created as part of a project that puts Oop concepts and java development skills to the test. The app is a text-based UI restaurant ordering app where the user can:
+This app is created as part of a project that puts OOP concepts and Java development skills to the test. The app is a text-based UI restaurant ordering app where the user can:
 * Search for a particular dish using partial or full dish name
 * Browse available dishes by viewing menus categorized into `Appetizers`, `Main Course`, and `Desserts`
 * Add items to the cart
@@ -16,3 +22,4 @@ The repo contains a folder named `Deliverables` that contains the following file
 The repo also contains the app source code in an `IntelliJ` project.
 Please note that the app uses `openjdk-22`.
 Finally, there is a live demo video in the `Demo` folder that shows the app running with an ordering scenario using both browsing and search features.
+

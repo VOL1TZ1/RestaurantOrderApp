@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Order {
     ArrayList<Dish> cart = new ArrayList<>(); //list of dishes to act as a cart.
-    static double total; // a variable the total will be calculated in.
-    double taxPercent = 0.14; //taxes is 14%
+    private double total; // a variable the total will be calculated in.
+    final double taxPercent = 0.14; //taxes is 14%
     double discount = 0;
     String paymentOption;
     private String specialRequirements;

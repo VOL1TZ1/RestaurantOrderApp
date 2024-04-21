@@ -5,6 +5,8 @@ public class Main {
     private static Order userOrder;
     private static boolean stillBrowsing = true;
     private static boolean isCartEmpty = true;
+    private static boolean isOrderComplete = false;
+
     public static void main(String[] args) {
         /*Initializations*/
         userMenu = new Menu();
@@ -23,6 +25,8 @@ public class Main {
                 userOrder = new Order();
                 isNewOrder = false;
                 stillBrowsing = true;
+                isOrderComplete = false;
+
             }
             /************************** Main menu **************************/
             System.out.println(pageDivider);
@@ -50,7 +54,8 @@ public class Main {
                     System.out.println("Oops! Looks like you entered an invalid input. " +
                             "Please choose one of the numbers in parentheses or (e) to exit.");
             }
-            if('e' != userChoice){
+            if('e' != userChoice && isOrderComplete){
+
                 System.out.println("Do you want to make a new order? (y/n)");
                 userChoice = sc.next().toLowerCase().charAt(0);
                 if('y' == userChoice){
@@ -83,7 +88,8 @@ public class Main {
                     (1) Appetizers
                     (2) Main Course Dishes
                     (3) Desserts
-                    (0) To return to the main menu""");
+                    (0) To return to the main menu (\u001B[31mCaution!! This option will automatically cancel your order\u001B[0m)""");
+
             Scanner sMenu = new Scanner(System.in);
             //keeping track of which menu to use
             int categoryNum = sMenu.nextInt();
@@ -290,5 +296,7 @@ public class Main {
        userOrder.confirmPayment();
        System.out.println("Order confirmed successfully!");
        System.out.println();
+       isOrderComplete = true;
+
    }
 }

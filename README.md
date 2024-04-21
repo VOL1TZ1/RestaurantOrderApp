@@ -2,9 +2,13 @@
 ## Project Contributors:
 
 * Ahmed Nasr Abdul Aziz
+  >[LinkedIN](https://www.linkedin.com/in/ahmed-nasr-122462109/) profile
 * Mazen Mohammed
+  >[LinkedIN]() profile
 * Mohammed El Taher
+  >[LinkedIN]() profile
 * Mohamed Elmaadawy
+  >[LinkedIN]() profile
 ## Introduction
 This app is created as part of a project that puts OOP concepts and Java development skills to the test. The app is a text-based UI restaurant ordering app where the user can:
 * Search for a particular dish using partial or full dish name
